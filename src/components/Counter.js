@@ -2,13 +2,10 @@ import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
-import { useSelector,useDispatch } from "react-redux"; // Importing useDispatch to dispatch actions
-import { Inc,Dec } from "../States/Reducers";
-
-
+import { useDispatch, useSelector } from "react-redux";
 const Counter = () => {
-  const curState = useSelector((state) => state.number);
-  const dispatch = useDispatch(); // Getting the dispatch function
+  const count=useSelector(state=>state)
+  const dispatch=useDispatch();
 
 
   return (
@@ -21,11 +18,11 @@ const Counter = () => {
         gap: 3,
       }}
     >
-      <Button variant="contained" color="error" onClick={()=>dispatch(Dec())} >
+      <Button variant="contained" color="error" onClick={(e)=>dispatch({type:'DECREMENT'})}   >
         <RemoveIcon />
       </Button>
-      <Typography variant="h4">{curState}</Typography>
-      <Button color="success" variant="contained" onClick={()=>dispatch(Inc())}>
+      <Typography variant="h4">{count}</Typography>
+      <Button color="success" variant="contained" onClick={(e)=>dispatch({type:'INCREMENT'})} >
         <AddIcon />
       </Button>
     </Box>
